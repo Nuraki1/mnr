@@ -1,5 +1,6 @@
 import express from "express";
 import config, { PORT, HOST, SERVER_URL } from "./config";
+import apiRouter from "./api-router"
 
 console.log(config);
 
@@ -11,11 +12,13 @@ const server = express();
 
 server.set("view engine", "ejs"); //ejs: templating language
 
-server.use("/", (req, res) => {
+server.use("/api",apiRouter)
+
+server.get("/", (req, res) => {
   res.render("index", {
-    content:
-      "<span>Perfecto!!!</span><h1><em>hi </em>there</h1>",
-  }); //index: name of the templating file
+    initialContent:
+      "<h1>Loading in the server side...</h1>",
+  });  //index: name of the templating file
 });
 
 server.listen(config.PORT, config.HOST, () => {

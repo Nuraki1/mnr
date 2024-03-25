@@ -1,3 +1,5 @@
+// to run it, npx tsnd src/dev/load-test-data.ts
+
 import { connectClient, stopClient } from "../server/db";
 
 async function main() {
